@@ -1,0 +1,68 @@
+
+<script type="text/javascript">
+var root = 'https://strikingly-hangman.herokuapp.com/game/on';
+var data = {
+  "playerId": "liuhuijisuanji@gmail.com",
+  "action": "startGame"
+}
+
+    function onSubmit(){
+      $.ajax({
+        url: root,
+        type:"post",
+        data: JSON.stringify(data),//取得json的string
+        dataType: 'html',
+        contentType: 'application/json',
+        success: function(result){
+          $(".btn1").html(result);
+          localStorage.setItem("testJSON", result);
+
+          //Retrieving data:
+          text = localStorage.getItem("testJSON");
+          obj = JSON.parse(text);
+
+          if(obj.sessionId) {
+            (#nextword).show()
+          }
+
+
+        },
+        error: function(jqXHR){console.log(jqXHR)},
+      })
+
+
+
+
+    }
+</script>
+
+<button type="button" name='submit' onclick="onSubmit()">开始游戏</button>
+<a class="btn1"></a>
+
+<br>
+<button type="button" name='submit' onclick="nextWord()" id="nextword">Nextword</button>
+
+
+<style>
+#nextword {
+  display: none
+}
+</style>
+
+
+<script>
+// $(".btn1").click(function(){
+//   var result = "222"
+//   $.ajax({
+//     url: root,
+//     type:"post",
+//     data: data,//取得json的string
+//     dataType: 'html',
+//     contentType: 'application/json',
+//     success: function(result){
+//       $(".btn1").html(result);
+//     },
+//     error: function(jqXHR){console.log(jqXHR)},
+//   })
+// })
+</script>

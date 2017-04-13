@@ -1,0 +1,21 @@
+<ul>
+<% @events.each do |event| %>
+  <li>
+    <%= link_to event.name, event_path(event) %>
+    <%= link_to " (XML)", event_path(event, :format => :xml) %>
+    <%= link_to " (JSON)", event_path(event, :format => :json) %>
+    <%= link_to 'edit', edit_event_path(event) %>
+    <%= button_to 'delete', event_path(event), :method => :delete, :data => { :confirm => "Are you sure?" } %>
+  </li>
+<% end %>
+</ul>
+
+<%= link_to 'startGame', new_event_path %>
+<%= link_to "Atom feed", events_path(:format => :atom) %>
+
+
+
+<form enctype='application/json' method="post" action="https://strikingly-hangman.herokuapp.com/game/on">
+  <input name='playerId' value='liuhuijisuanji@gmail.com'>
+  <input type="submit" name='action' value='startGame'>
+</form>
